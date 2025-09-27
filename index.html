@@ -2,12 +2,70 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="shortcut icon" href="IMAGES/weather-icon.webp" type="image/x-icon">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>oop_project_3_sem</title>
+    <title>Weather Vibes</title>
   </head>
   <body>
+    
+    <!-- HEADER -->
+
+    <div class="wrapper">
+      <div class="container">
+          <header class="header">
+              <section class="conteiner__header">
+              <section class="header__logo">
+                  <img src="IMAGES/weather-icon.webp" alt="Weather Vibes Logo" class="header__logo-img">
+                  <h1 class="header__logo-title">Weather Vibes</h1>
+                  <a href="#home">Home</a>
+                  <button id="theme-toggle">Перемикнути тему</button>
+              </section>
+          </header>
+  
+      <!-- NAV -->
+      
+      <nav class="container__nav">
+          <input type="nav_search_for_a_place" placeholder="Пошук місця" class="nav__input" required>
+          <button class="nav__btn-search">Пошук</button>
+          <div class="current_place">Київ</div>
+          <div class="current_date">Сьогодні, 7 Листопада</div>
+              <nav class="header__nav">
+                  <ul class="header__menu">
+                  <li><a href="#yesterday">Вчора</a></li>
+                  <li><a href="#now">Зараз</a></li>
+                  <li><a href="#hours">По годинах</a></li>
+                  <li><a href="#today">Сьогодні</a></li>
+                  <li><a href="#tomorrow">Завтра</a></li>
+                  <li><a href="#3_days">3 дні</a></li>
+              </ul>
+          </nav>
+      </nav>
+  
+      <!-- TEXT -->
+      
+      <div class="container__text">
+          <h2 class="text__title">Погода у Києві на місяць</h2>
+      </div>
+  
+      <!-- MAIN -->
+  
+  
+      <!-- FOOTER -->
+      
+      <p class="footer__info">© Weather Vibes by Cherhinets Yuliia </p>
+  
+  
+  
+      </div>
+      </div>
+  
+      <script src="JS/script.js"></script>
+      <script src="https://cdn.tailwindcss.com"></script>    
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script src="JS/script.js"></script>
   </body>
 </html>

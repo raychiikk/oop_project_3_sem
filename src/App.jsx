@@ -1,34 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import './CSS/reset.css'
+import './CSS/style.css'
+import './CSS/fonts.css'
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+
+    // <!-- HEADER -->
+
+    <div className="wrapper">
+      <div className="container">
+        <header className="header">
+          <section className="conteiner__header">
+            <section className="header__logo">
+              <img src="/IMAGES/weather-icon.webp" alt="Weather Vibes Logo" className="header__logo-img" />
+              <h1 className="header__logo-title">Weather Vibes</h1>
+              <a href="#home">Home</a>
+              <button id="theme-toggle">Перемикнути тему</button>
+            </section>
+          </section>
+        </header>
+
+        {/* <!-- NAV --> */}
+
+        <nav className="container__nav">
+          <input type="text" placeholder="Пошук місця" className="nav__input" required />
+          <button className="nav__btn-search">Пошук</button>
+          <div className="current_place">Київ</div>
+          <div className="current_date">Сьогодні, 7 Листопада</div>
+          <nav className="header__nav">
+            <ul className="header__menu">
+              <li><a href="#yesterday">Вчора</a></li>
+              <li><a href="#now">Зараз</a></li>
+              <li><a href="#hours">По годинах</a></li>
+              <li><a href="#today">Сьогодні</a></li>
+              <li><a href="#tomorrow">Завтра</a></li>
+              <li><a href="#3_days">3 дні</a></li>
+            </ul>
+          </nav>
+        </nav>
+
+        {/* <!-- TEXT --> */}
+
+        <div className="container__text">
+          <h2 className="text__title">Погода у Києві на місяць</h2>
+        </div>
+
+        {/* <!-- MAIN --> */}
+  
+  
+        {/* <!-- FOOTER --> */}
+
+        <p className="footer__info">© Weather Vibes by Cherhinets Yuliia</p>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 

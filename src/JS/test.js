@@ -4,9 +4,7 @@ import { Forecast } from './Forecast.js';
 import { City } from './City.js';
 import { UIComponent, WeatherDisplay, ForecastDisplay } from './WeatherDisplay.js'; // Імітуємо імпорт для всіх UI-компонентів
 import { WeatherCondition, RainyCondition } from './WeatherCondition.js'; // Імітуємо імпорт для умов
-import { Displayable } from './Displayable.js';
-import { WeatherAlert } from './WeatherAlert.js';
-import { WeatherStation } from './WeatherStation.js';
+import { Displayable } from './Displayable.js'; // Імітуємо імпорт для інтерфейсу
 import { processData } from './utils.js'; // Імітуємо імпорт для статичного поліморфізму
 import { WeatherProcessor } from './WeatherProcessor.js'; // Імітуємо імпорт для третього випадку поліморфізму
 

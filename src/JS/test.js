@@ -83,12 +83,12 @@ console.log('Звіт:', station.generateReport());
   // 9. Тестуємо статичний поліморфізм (processData)
 console.log('9. ТЕСТ Статичного поліморфізму (processData):');
 console.log('Температура одного дня:', processData(currentWeather));
-console.log('Температури прогнозу:', processData(forecast.#data));
+console.log('Температури прогнозу:', processData(forecast.getData()));
 
   // 10. Тестуємо статичний поліморфізм (WeatherProcessor)
 console.log('10. ТЕСТ Статичного поліморфізму (WeatherProcessor):');
 console.log('Обробка одного дня:', WeatherProcessor.process(currentWeather));
-console.log('Обробка масиву:', WeatherProcessor.processArray(forecast.#data.map((_, i) => new WeatherData(15 + i, 'Test'))));
+console.log('Обробка масиву:', WeatherProcessor.processArray(forecast.getData().map((_, i) => new WeatherData(15 + i, 'Test'))));
 
 console.log('ТЕСТУВАННЯ ЗАВЕРШЕНО');
 }

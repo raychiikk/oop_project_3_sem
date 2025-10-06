@@ -1,14 +1,15 @@
-// Клас ForecastDisplay успадковує UIComponent і відображає середню температуру прогнозу.
-// Демонструє динамічний поліморфізм через перевизначення методу render.
+// Клас ForecastDisplay успадковує UIComponent і реалізує Displayable для відображення прогнозу.
+// Демонструє динамічний поліморфізм через перевизначення методу display.
 import { UIComponent } from './UIComponent.js';
+import { Forecast } from './Forecast.js';
 import { Displayable } from './Displayable.js';
 
 export class ForecastDisplay extends UIComponent {
-  // Перевизначений метод render, який відображає середню температуру прогнозу.
-render(forecast) {
+  render(forecast) {
     this.getElement().innerHTML = `<p>Avg: ${forecast.getAverageTemp()}°C</p>`;
     document.body.appendChild(this.getElement());
-}
-// Реалізація методу display для поліморфізму.
-  display() { this.render(/* дані */); } // Поки заглушка
+  }
+  display() {
+    this.render(new Forecast()); // Приклад із фіктивними даними
+  }
 }

@@ -1,15 +1,14 @@
-// Файл utils.js містить допоміжні функції для обробки погодних даних.
-// Використовується для демонстрації статичного поліморфізму, обробляючи як один об'єкт, так і масив.
-
+// src/JS/utils.js
 export function processData(data) {
-    // Функція processData демонструє статичний поліморфізм:
-    // - Якщо data є масивом, повертає масив температур.
-    // - Якщо data є об'єктом WeatherData, повертає масив із однією температурою.
-    if (Array.isArray(data)) {
-    return data.map(item => item.getTemperature());
-    } else if (typeof data.getTemperature === 'function') {
-    return [data.getTemperature()];
-    } else {
-    throw new Error('Невірний тип даних для обробки');
+    // если пришёл один объект с методом getTemperature
+    if (data && typeof data.getTemperature === 'function') {
+    return data.getTemperature();
     }
+
+    // если пришёл массив данных
+    if (Array.isArray(data)) {
+    return data.map(d => d.getTemperature());
+    }
+
+    throw new Error('Invalid data type passed to processData');
 }

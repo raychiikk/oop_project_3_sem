@@ -12,13 +12,11 @@ import { WeatherDisplay } from './WeatherDisplay.js';
 import { processData } from './utils.js';
 
 
-
-
 export function runClassTests() {
   console.log('ТЕСТУВАННЯ КЛАСІВ ООП');
   console.log('=====================');
 
-  // 1. Тестуємо WeatherData
+  // 1. тестуємо WeatherData
   console.log('1. ТЕСТ WeatherData:');
   const currentWeather = new WeatherData(15, 'Хмарно');
   console.log('Температура:', currentWeather.getTemperature() + '°C');
@@ -28,14 +26,14 @@ export function runClassTests() {
   console.log('Оновлена температура:', currentWeather.getTemperature() + '°C');
   console.log('Тепер екстремальна?', currentWeather.checkExtreme());
 
-  // 2. Тестуємо City
+  // 2. тестуємо City
   console.log('2. ТЕСТ City:');
   const kyiv = new City('Київ', 'Україна');
   console.log('Назва міста:', kyiv.getName());
   console.log('Деталі локації:', kyiv.getLocationDetails());
   console.log('Сусідні міста:', kyiv.findNearby());
 
-  // 3. Тестуємо Forecast
+  // 3. тестуємо Forecast
   console.log('3. ТЕСТ Forecast:');
   const forecast = new Forecast();
   forecast.addDay(new WeatherData(18, 'Сонячно'));
@@ -45,7 +43,7 @@ export function runClassTests() {
   console.log('Середня температура:', forecast.getAverageTemp().toFixed(1) + '°C');
   console.log('Тенденція:', forecast.predictTrend());
 
-  // 4. Тестуємо UIComponent, WeatherDisplay, ForecastDisplay (динамічний поліморфізм)
+  // 4. тестуємо UIComponent, WeatherDisplay, ForecastDisplay (динамічний поліморфізм)
   console.log('4. ТЕСТ UIComponent та спадкоємці:');
   try {
     new UIComponent();
@@ -57,24 +55,24 @@ export function runClassTests() {
   weatherDisplay.render(currentWeather);
   forecastDisplay.render(forecast);
 
-  // 5. Тестуємо WeatherCondition та RainyCondition
+  // 5. тестуємо WeatherCondition та RainyCondition
   console.log('5. ТЕСТ WeatherCondition та RainyCondition:');
   const condition = new WeatherCondition('Sunny');
   console.log('Базова умова:', condition.describe());
   const rainy = new RainyCondition('Heavy');
   console.log('Дощова умова:', rainy.describe());
 
-  // 6. Тестуємо Displayable (динамічний поліморфізм)
+  // 6. тестуємо Displayable (динамічний поліморфізм)
   console.log('6. ТЕСТ Displayable:');
   const displayables = [weatherDisplay, forecastDisplay];
   displayables.forEach(d => d.display());
 
-  // 7. Тестуємо статичний поліморфізм (processData)
+  // 7. тестуємо статичний поліморфізм (processData)
   console.log('7. ТЕСТ Статичного поліморфізму (processData):');
   console.log('Температура одного дня:', processData(currentWeather));
   console.log('Температури прогнозу:', processData(forecast.getData()));
 
-  // 8. Тестуємо статичний поліморфізм (WeatherProcessor)
+  // 8. тестуємо статичний поліморфізм (WeatherProcessor)
   console.log('8. ТЕСТ Статичного поліморфізму (WeatherProcessor):');
   console.log('Обробка одного дня:', WeatherProcessor.process(currentWeather));
   console.log('Обробка масиву:', WeatherProcessor.processArray(forecast.getData().map((_, i) => new WeatherData(15 + i, 'Test'))));

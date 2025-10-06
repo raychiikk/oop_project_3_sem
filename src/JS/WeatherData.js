@@ -1,7 +1,8 @@
-// Клас WeatherData представляє дані про поточну погоду, інкапсуляція
+// клас WeatherData представляє дані про поточну погоду, інкапсуляція
 export class WeatherData {
     #temperature;
     #description;
+
     constructor(temp, desc) {
     this.#temperature = temp;
     this.#description = desc;

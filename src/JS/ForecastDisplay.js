@@ -5,10 +5,14 @@ import { Displayable } from './Displayable.js';
 
 export class ForecastDisplay extends UIComponent {
   render(forecast) {
-    this.getElement().innerHTML = `<p>Avg: ${forecast.getAverageTemp()}°C</p>`;
+    this.getElement().innerHTML = `<p>Avg: ${forecast.getAverageTemp().toFixed(1)}°C</p>`;
     document.body.appendChild(this.getElement());
   }
   display() {
-    this.render(new Forecast()); // приклад із фіктивними даними
+    // реалізація контракту Displayable
+    const testForecast = new Forecast();
+    testForecast.addDay({ getTemperature: () => 18 });
+    testForecast.addDay({ getTemperature: () => 22 });
+    this.render(testForecast); // приклад із фіктивними даними
   }
 }

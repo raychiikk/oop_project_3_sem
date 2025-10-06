@@ -65,7 +65,15 @@ export function runClassTests() {
   // 6. тестуємо Displayable (динамічний поліморфізм)
   console.log('6. ТЕСТ Displayable:');
   const displayables = [weatherDisplay, forecastDisplay];
-  displayables.forEach(d => d.display());
+  
+  displayables.forEach((d, i) => {
+    if (!Displayable.isImplementedBy(d)) {
+      console.warn(` Об'єкт #${i + 1} не реалізує Displayable!`);
+    } else {
+      console.log(`Об'єкт #${i + 1} реалізує Displayable`);
+      d.display(); // виклик конкретної реалізації
+    }
+  });
 
   // 7. тестуємо статичний поліморфізм (processData)
   console.log('7. ТЕСТ Статичного поліморфізму (processData):');

@@ -21,6 +21,7 @@ export class WeatherDisplay extends UIComponent {
     document.body.appendChild(this.getElement());
   }
   display() {
-    this.render(new WeatherData(20, 'Sunny')); // Приклад із фіктивними даними
+    // реалізація контракту Displayable
+    this.render(new WeatherData(20, 'Sunny')); // приклад із фіктивними даними
   }
 }

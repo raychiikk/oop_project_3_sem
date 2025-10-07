@@ -1,6 +1,6 @@
 import { WeatherData } from './WeatherData.js';
-// Абстрактний клас UIComponent є базою для всіх елементів інтерфейсу.
-// Використовується для успадкування та динамічного поліморфізму.
+
+// абстрактний клас UIComponent є базою для всіх елементів інтерфейсу для успадкування та динамічного поліморфізму
 export class UIComponent {
   #element;
   constructor() {
@@ -11,9 +11,8 @@ export class UIComponent {
   getElement() { return this.#element; }
 }
 
-// Клас WeatherDisplay успадковує UIComponent і реалізує Displayable для відображення поточних погодних даних.
-// Демонструє динамічний поліморфізм через перевизначення методу display.
-import { Displayable } from './Displayable.js';
+// клас WeatherDisplay успадковує UIComponent і реалізує Displayable для відображення поточних погодних даних
+// демонструє динамічний поліморфізм через перевизначення методу display
 
 export class WeatherDisplay extends UIComponent {
   render(weather) {

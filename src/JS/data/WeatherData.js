@@ -24,7 +24,10 @@ export class WeatherData {
     setTemperature(temp) { this.#temperature = temp; }
 
     // нетривіальний метод, який повертає зведену інформацію про погоду у форматі рядка
-    getWeatherSummary() { return `${this.#temperature}°C, ${this.#description}`; }
+    // У файлі src/js/data/WeatherData.js
+getWeatherSummary() { 
+    return `${this.#temperature}°C, ${this.#description.describe()}`; 
+}
     
     // нетривіальний метод, який перевіряє, чи температура є екстремальною (> 30°C) для аналізу погодних умов
     checkExtreme() { return this.#temperature > 30; }

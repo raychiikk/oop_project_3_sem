@@ -2,7 +2,7 @@ import './App.css'
 import './CSS/reset.css'
 import './CSS/style.css'
 import './CSS/fonts.css'
-import { runClassTests, demonstrateClasses } from './JS/test.js'
+import { runClassTests, demonstrateClasses } from './main.js'
 import React from 'react'
 
 function App() {
@@ -82,8 +82,10 @@ function App() {
         {/* <!-- FOOTER --> */}
 
         <p className="footer__info">© Weather Vibes by Cherhinets Yuliia</p>
+        <script type="module" src="src/main.js"></script>
       </div>
     </div>
   )
 }
+
 export default App

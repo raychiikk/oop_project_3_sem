@@ -1,16 +1,18 @@
 // клас Forecast управляє списком погодних даних для прогнозу на кілька днів, інкапсцуляція
 export class Forecast {
-  #data = []; // масив об'єктів WeatherData
+  constructor(days) {
+      this.days = days;
+  }
 
-  // нетривіальний метод для додавання нового дня до прогнозу.
-  addDay(weather) { this.#data.push(weather); }
+  averageIntensity() {
+      const sum = this.days.reduce((acc, day) => acc + day.getIntensity(), 0);
+      return (sum / this.days.length).toFixed(2);
+  }
 
-  // нетривіальний метод, який обчислює середню температуру за всіма днями, використано метод reduce для обробки масиву
-  getAverageTemp() { return this.#data.reduce((sum, w) => sum + w.getTemperature(), 0) / this.#data.length || 0; }
-
-  // нетривіальний метод, який прогнозує тенденцію температури 
-  predictTrend() { return this.#data.length > 0 ? 'Rising' : 'Stable'; }
-
-  // публічний метод для отримання доступу до приватного масиву даних 
-  getData() { return this.#data; }
+  printForecast() {
+      console.log("📆 Forecast:");
+      this.days.forEach((day, i) => console.log(`Day ${i + 1}: ${day.describe()}`));
+      console.log(`Average intensity: ${this.averageIntensity()}`);
+  }
 }
+  

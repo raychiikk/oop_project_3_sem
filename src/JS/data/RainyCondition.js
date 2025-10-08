@@ -1,14 +1,24 @@
 // клас RainyCondition успадковує WeatherCondition і додає інтенсивність дощу, демонструє успадкування та перевизначення методу describe
-import { WeatherCondition } from './WeatherCondition.js';
+import { WeatherCondition } from "./WeatherCondition.js";
 
 export class RainyCondition extends WeatherCondition {
-#intensity;
+    #rainAmount; // мм опадів
 
-  // конструктор ініціалізує тип і інтенсивність, викликаючи батьківський конструктор
-constructor(intensity) {
-    super('Rainy');
-    this.#intensity = intensity;
-}
-  // перевизначений метод describe, який додає інтенсивність до базового опису
-describe() { return `${super.describe()}, Intensity: ${this.#intensity}`; }
+    constructor(rainAmount = 5) {
+        super("Rainy");
+        this.#rainAmount = rainAmount;
+    }
+
+    // нетривіальний метод — інтенсивність дощу за кількістю опадів
+    getIntensity() {
+        return Math.min(10, this.#rainAmount / 2);
+    }
+
+    describe() {
+        return `🌧️ Rainy: ${this.#rainAmount}mm of rain, intensity = ${this.getIntensity()}`;
+    }
+
+    addRain(mm) {
+        this.#rainAmount += mm;
+    }
 }

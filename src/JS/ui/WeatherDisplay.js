@@ -1,4 +1,4 @@
-import { WeatherData } from './WeatherData.js';
+import { WeatherData } from '../data/WeatherData.js';
 
 // абстрактний клас UIComponent є базою для всіх елементів інтерфейсу для успадкування та динамічного поліморфізму
 export class UIComponent {

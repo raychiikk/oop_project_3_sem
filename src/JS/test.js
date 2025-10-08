@@ -1,15 +1,15 @@
 // unit tests for WeatherData, Forecast, City, ForecastDisplay, WeatherCondition, RainyCondition, Displayable, UIComponent, WeatherProcessor, WeatherDisplay,  classes
-import { WeatherData } from './WeatherData.js';
-import { Forecast } from './Forecast.js';
-import { City } from './City.js';
-import { ForecastDisplay } from './ForecastDisplay.js';
-import { WeatherCondition } from './WeatherCondition.js';
-import { RainyCondition } from './RainyCondition.js';
+import { WeatherData } from './data/WeatherData.js';
+import { Forecast } from './logic/Forecast.js';
+import { City } from './data/City.js';
+import { ForecastDisplay } from './ui/ForecastDisplay.js';
+import { WeatherCondition } from './data/WeatherCondition.js';
+import { RainyCondition } from './data/RainyCondition.js';
 import { Displayable } from './Displayable.js';
-import { WeatherProcessor } from './WeatherProcessor.js';
-import { UIComponent } from './UIComponent.js';
-import { WeatherDisplay } from './WeatherDisplay.js';
-import { processData } from './utils.js';
+import { WeatherProcessor } from './logic/WeatherProcessor.js';
+import { UIComponent } from './ui/UIComponent.js';
+import { WeatherDisplay } from './ui/WeatherDisplay.js';
+import { processData } from './utils/utils.js';
 
 let currentWeather, weatherDisplay, forecastDisplay, forecast;
 

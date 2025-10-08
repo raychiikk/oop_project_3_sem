@@ -1,6 +1,6 @@
 // клас ForecastDisplay успадковує UIComponent і реалізує Displayable для відображення прогнозу, динамічний поліморфізм через перевизначення методу display
 import { UIComponent } from './UIComponent.js';
-import { Forecast } from './Forecast.js';
+import { Forecast } from '../logic/Forecast.js';
 
 export class ForecastDisplay extends UIComponent {
   render(forecast) {

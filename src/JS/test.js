@@ -20,7 +20,7 @@ export function runClassTests() {
   try {
     // 1. тестуємо WeatherData
     console.log('1. ТЕСТ WeatherData:');
-    currentWeather = new WeatherData(15, 'Хмарно', 60, 10, 1015, 30, 2, 8); // З новими параметрами
+    currentWeather = new WeatherData(15, 'Хмарно', 60, 10, 1015, 30, 2, 8); 
     console.log('Температура:', currentWeather.getTemperature() + '°C');
     console.log('Погодний опис:', currentWeather.getWeatherSummary());
     console.log('Екстремальна температура?', currentWeather.checkExtreme());

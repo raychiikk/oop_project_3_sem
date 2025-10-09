@@ -2,27 +2,21 @@ import './App.css'
 import './CSS/reset.css'
 import './CSS/style.css'
 import './CSS/fonts.css'
-import { runClassTests, demonstrateClasses } from './main.js'
 import React from 'react'
 
 function App() {
 
   // тестування класів
 
-  React.useEffect(() => {
-    runClassTests();
-    demonstrateClasses();
-  }, []);
+  // const handleManualTest = () => {
+  //   console.clear();
+  //   runClassTests();
+  // };
 
-  const handleManualTest = () => {
-    console.clear();
-    runClassTests();
-  };
-
-  const handleClassDemo = () => {
-    console.clear();
-    demonstrateClasses();
-  };
+  // const handleClassDemo = () => {
+  //   console.clear();
+  //   demonstrateClasses();
+  // };
 
 
   return (
@@ -63,14 +57,14 @@ function App() {
 
         {/* <!-- TEXT --> */}
 
-        <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', margin: '20px' }}>
+        {/* <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', margin: '20px' }}>
           <button onClick={handleManualTest} style={{ padding: '10px 15px', background: '#007bff', color: 'white', border: 'none', borderRadius: '5px' }}>
             Тест класів
           </button>
           <button onClick={handleClassDemo} style={{ padding: '10px 15px', background: '#28a745', color: 'white', border: 'none', borderRadius: '5px' }}>
             Демо класів
           </button>
-        </div>
+        </div> */}
 
         <div className="container__text">
           <h2 className="text__title">Погода у Києві на місяць</h2>

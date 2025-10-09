@@ -7,5 +7,4 @@ export default defineConfig({
   server: {
     open: '/main.js', // Відкриває main.js як точку входу
   },
-  
 })

@@ -1,9 +1,9 @@
-import { City } from "./src/js/data/City.js";
-import { WeatherData } from "./src/js/data/WeatherData.js";
-import { SunnyCondition } from "./src/js/data/SunnyCondition.js";
-import { RainyCondition } from "./src/js/data/RainyCondition.js";
-import { Forecast } from "./src/js/logic/Forecast.js";
-import { WeatherProcessor } from "./src/js/logic/WeatherProcessor.js";
+import { City } from "./js/data/City.js";
+import { WeatherData } from "./js/data/WeatherData.js";
+import { SunnyCondition } from "./js/data/SunnyCondition.js";
+import { RainyCondition } from "./js/data/RainyCondition.js";
+import { Forecast } from "./js/logic/Forecast.js";
+import { WeatherProcessor } from "./js/logic/WeatherProcessor.js";
 
 const city = new City("Kyiv");
 

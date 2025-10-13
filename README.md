@@ -1,16 +1,131 @@
-# React + Vite
+Лабораторна робота №1: Базові ідеї ООП
+Цей проєкт реалізує об’єктно-орієнтовану систему для обробки погодних даних та структури даних (бінарне дерево пошуку) відповідно до вимог лабораторної роботи №1 з дисципліни "Об’єктно-орієнтоване програмування". Проєкт виконано мовою JavaScript з використанням модульної структури та протестовано за допомогою фреймворку Vitest. Нижче наведено детальний опис реалізації, перелік класів, полів, методів, а також відповідність вимогам лабораторної роботи.
+Обраний варіант
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Перелік 1: Варіант 6 (**) — Бінарні дерева, дерева бінарного пошуку. Додавання елементів, видалення елементів, пошук за значенням.
+Перелік 2: Варіант 5 (Транспортні засоби, рівень c) — Реалізація класів для опису географічних локацій (міста) та погодних умов, які можуть впливати на транспортні засоби, з нетривіальними методами та інтеграцією з алгоритмами обробки даних.
+Покращення: Реалізовано тести за допомогою Vitest для перевірки коректності роботи класів та методів.
 
-Currently, two official plugins are available:
+Структура проєкту
+Проєкт складається з наступних основних компонентів:
+src/js/data/: Класи для представлення даних (City, WeatherCondition, SunnyCondition, RainyCondition, WeatherData).
+src/js/logic/: Логіка обробки даних (Forecast, WeatherProcessor).
+src/js/structures/: Структура даних (BinaryTree, TreeNode).
+src/js/utils/: Утиліти (utils.js).
+src: Основний файл (main.js).
+src/tests/: Тести для перевірки функціональності (testWeather.js, testBinaryTree.js).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Реалізовані елементи
+Нижче наведено детальний перелік реалізованих елементів відповідно до вимог лабораторної роботи.
+1. Класи (вимога: не менше 9)
+Проєкт містить 9 класів:
 
-## React Compiler
+City — представляє географічне місце (місто).
+WeatherCondition — базовий клас для погодних умов (абстрактна поведінка через методи).
+SunnyCondition — клас для сонячної погоди, успадковує WeatherCondition.
+RainyCondition — клас для дощової погоди, успадковує WeatherCondition.
+WeatherData — клас для зберігання даних про поточну погоду.
+Forecast — клас для управління прогнозом погоди на кілька днів.
+WeatherProcessor — клас із статичними методами для обробки погодних даних.
+BinaryTree — клас для реалізації бінарного дерева пошуку.
+TreeNode — клас для представлення вузла бінарного дерева.
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. Поля (вимога: не менше 15)
+Загальна кількість полів у всіх класах: 17.
+Перелік полів:
 
-## Expanding the ESLint configuration
+City: #name, #country (2 поля).
+WeatherCondition: #type (1 поле).
+SunnyCondition: #sunHours (1 поле).
+RainyCondition: #rainAmount (1 поле).
+WeatherData: #temperature, #description, #humidity, #windSpeed, #pressure, #cloudCover, #precipitation, #visibility (8 полів).
+Forecast: days (1 поле).
+BinaryTree: root (1 поле).
+TreeNode: value, left, right (3 поля).
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Усі поля є приватними (за винятком days у Forecast та полів у TreeNode, де публічний доступ виправданий для спрощення реалізації). Це забезпечує належну інкапсуляцію.
+3. Нетривіальні методи (вимога: не менше 25)
+Загальна кількість нетривіальних методів: 26. 
+Нетривіальними вважаються методи, які виконують обробку даних, логіку або обчислення, а не просто повертають чи встановлюють значення полів. Перелік нетривіальних методів:
+
+City:
+getLocationDetails() — повертає відформатований рядок із назвою міста та країною.
+findNearby() — повертає список сусідніх міст (імітація пошуку).
+
+WeatherCondition:
+getIntensity() — обчислює умовну інтенсивність (дефолтна поведінка).
+describe() — повертає опис погодних умов.
+
+SunnyCondition:
+getIntensity() — обчислює інтенсивність на основі годин сонця.
+describe() — повертає відформатований опис сонячної погоди.
+increaseSun() — змінює кількість годин сонця.
+
+RainyCondition:
+getIntensity() — обчислює інтенсивність на основі кількості опадів.
+describe() — повертає відформатований опис дощової погоди.
+addRain() — додає кількість опадів.
+
+WeatherData:
+getWeatherSummary() — повертає зведений опис погоди.
+checkExtreme() — перевіряє, чи температура є екстремальною.
+
+Forecast:
+averageIntensity() — обчислює середню інтенсивність для всіх днів прогнозу.
+printForecast() — виводить прогноз у консоль.
+
+WeatherProcessor:
+process() — обробляє один об’єкт WeatherData.
+processArray() — обробляє масив об’єктів WeatherData.
+
+BinaryTree:
+insert() — додає новий елемент у дерево.
+_insertNode() — рекурсивно вставляє вузол у дерево.
+find() — шукає значення у дереві.
+_findNode() — рекурсивно шукає вузол за значенням.
+inOrder() — виконує обхід дерева в порядку "in-order".
+_traverse() — рекурсивно обходить дерево для збору значень.
+
+TreeVisualizer:
+display() — відображає дерево у консолі.
+
+utils.js:
+processData() — обробляє дані (один об’єкт або масив) та повертає температуру.
+
+Тести (у файлах testWeather.js та testBinaryTree.js):
+Тестування вставки та пошуку у BinaryTree.
+Тестування обходу дерева (inOrder).
+
+4. Ієрархії успадкування (вимога: не менше 2, одна з яких містить ≥3 класи)
+Реалізовано 2 ієрархії успадкування:
+
+Ієрархія погодних умов (3 класи):
+Базовий клас: WeatherCondition.
+Похідні класи: SunnyCondition, RainyCondition.
+Використовується для демонстрації динамічного поліморфізму через метод describe().
+
+Ієрархія бінарного дерева (2 класи):
+TreeNode — вузол дерева.
+BinaryTree — дерево, яке використовує вузли.
+Використовується для реалізації структури даних.
+
+5. Поліморфізм (вимога: не менше 3 випадків, включаючи статичний і динамічний)
+Реалізовано 3 випадки поліморфізму:
+
+Динамічний поліморфізм:
+У класах SunnyCondition та RainyCondition перевизначається метод describe() базового класу WeatherCondition. У main.js демонструється виклик describe() через масив об’єктів WeatherCondition:const conditions = [sunny, rainy];
+conditions.forEach(cond => console.log(cond.describe()));
+Це дозволяє викликати відповідну реалізацію методу залежно від типу об’єкта під час виконання.
+
+Статичний поліморфізм:
+У класі WeatherProcessor методи process() та processArray() обробляють різні типи вхідних даних (один об’єкт WeatherData або масив). Вибір реалізації залежить від типу аргументу під час компіляції.
+
+Статичний поліморфізм (утиліта):
+Функція processData в utils.js обробляє як окремий об’єкт із методом getTemperature, так і масив об’єктів, демонструючи універсальну обробку даних.
+Клієнтський код у main.js та тестах (testWeather.js, testBinaryTree.js) використовує поліморфні інтерфейси, а не прямі виклики конкретних реалізацій.
+
+6. Інкапсуляція
+
+Усі поля у класах City, WeatherCondition, SunnyCondition, RainyCondition, WeatherData є приватними (використовується синтаксис # у JavaScript).
+Доступ до полів здійснюється через геттери та сеттери (наприклад, getTemperature(), setTemperature() у WeatherData).
+У класах BinaryTree та TreeNode деякі поля є публічними для спрощення реалізації, але це виправдано специфікою структури даних.

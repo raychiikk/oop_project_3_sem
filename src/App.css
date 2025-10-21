@@ -1,7 +1,4 @@
-body.dark-theme {
-  background-color: #1a1a1a;
-  color: #fff;
-}
+@import "tailwindcss";
 
 .dashboard, .forecast, .favorite-cities, .statistics {
   padding: 20px;

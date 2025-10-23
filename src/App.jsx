@@ -98,7 +98,8 @@ function App() {
           {renderScreen()}
         </main>
 
-        /* FOOTER */
+        {/* {FOOTER} */}
+
         <p className="footer__info text-center text-sm text-gray-500 dark:text-gray-400 mt-8">
           © Weather Vibes by Cherhinets Yuliia
         </p>

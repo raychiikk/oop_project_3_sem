@@ -1,3 +1,5 @@
+// src/js/logic/Forecast.js
+
 // клас Forecast управляє списком погодних даних для прогнозу на кілька днів, інкапсцуляція
 export class Forecast {
 constructor(days) {

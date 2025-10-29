@@ -1,27 +1,47 @@
 @import "tailwindcss";
 
-.dashboard, .forecast, .favorite-cities, .statistics {
-  padding: 20px;
+/* кастомні CSS змінні для темної теми */
+@theme {
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
 }
 
-table {
-  border-collapse: collapse;
-  margin: 10px 0;
+/* примусові стилі для темної теми (бігунок)*/
+html.dark {
+  color-scheme: dark;
 }
 
-th, td {
-  border: 1px solid #ccc;
-  padding: 5px;
+html.dark body {
+  background-color: var(--color-gray-900);
+  color: var(--color-gray-100);
 }
 
-button {
-  margin: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* офіційний підхід з CSS змінними */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
 }
 
-.dark-theme button {
-  background-color: #333;
-  color: #fff;
-  border: 1px solid #555;
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
 }

@@ -15,6 +15,7 @@ export class SunnyCondition extends WeatherCondition {
 
     // перевизначення опису
     describe() {
+        
         return `☀️ Sunny: ${this.#sunHours} hours of sun, intensity = ${this.getIntensity()}`;
     }
 

@@ -89,10 +89,10 @@ return (
                         peer-checked:bg-blue-600">
         </div>
           {/* бігунок (коло) */}
-          <div className="absolute top-0.5 left-[2px] bg-white border-gray-300 border rounded-full 
+        <div className="absolute top-0.5 left-[2px] bg-white border-gray-300 border rounded-full 
                         h-5 w-5 transition-all duration-300 
                         peer-checked:translate-x-full peer-checked:border-white">
-          </div>
+        </div>
         </label>
 
         </header>

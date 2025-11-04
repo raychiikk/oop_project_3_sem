@@ -75,9 +75,34 @@ export class WeatherService {
   // --- Методи для Статистики (для Statistics.jsx) ---
   getStatistics() {
     const avgIntensity = this.#forecast.averageIntensity();
+
+    // Рахуємо типи днів ===
+    const conditionCounts = this.#forecast.days.reduce((acc, day) => {
+        // day.getType() прийде з базового класу WeatherCondition
+        const type = day.getType(); // Буде "Sunny" або "Rainy"
+        
+        // Перекладаємо для діаграми
+        const typeName = (type === 'Sunny') ? 'Сонячно' : 'Дощ';
+        
+        if (!acc[typeName]) {
+            acc[typeName] = 0;
+        }
+        acc[typeName]++;
+        return acc;
+    }, {}); // Результат буде: { 'Сонячно': 2, 'Дощ': 2 }
+
+    // Конвертуємо у масив, який "розуміє" Recharts:
+    // [ { name: 'Сонячно', value: 2 }, { name: 'Дощ', value: 2 } ]
+    const conditionData = Object.keys(conditionCounts).map(key => ({
+        name: key, // 'Сонячно'
+        value: conditionCounts[key] // 2
+    }));
+
     return {
       averageIntensity: avgIntensity,
       totalDays: this.#forecast.days.length,
+      conditionData: conditionData // Додаємо нові дані
     };
   }
 }
+

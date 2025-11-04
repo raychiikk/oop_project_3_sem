@@ -1,7 +1,12 @@
 import React from 'react';
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 // стилі кнопок (додано shadow-sm)
 const secondaryButton = "py-2 px-4 rounded-lg font-semibold transition-colors bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 shadow-sm";
+
+// Кольори для діаграми 
+// Жовтий для "Сонячно", Синій для "Дощ", сірий про всяк випадок
+const COLORS = ['#FFBB28', '#0088FE', '#FF8042'];
 
 /**
  * компонент статистики.
@@ -9,8 +14,10 @@ const secondaryButton = "py-2 px-4 rounded-lg font-semibold transition-colors bg
  */
 const Statistics = ({ onNavigate, stats }) => {
     
-    // вся логіка розрахунків (getStatistics) тепер у WeatherService
-    // цей компонент "тупий" і лише відображає дані
+    // stats тепер містить:
+    // stats.averageIntensity
+    // stats.totalDays
+    // stats.conditionData = [ { name: 'Сонячно', value: 2 }, { name: 'Дощ', value: 2 } ]
     
     return (
         <div className="statistics">
@@ -40,10 +47,47 @@ const Statistics = ({ onNavigate, stats }) => {
                 </div>
                 
             </div>
-            
+
+            {/* Кругова діаграма*/}
+            <h3 className="text-2xl font-bold mb-4 mt-8">Співвідношення умов (прогноз)</h3>
+            <div className="w-full h-80 bg-gray-50 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                <ResponsiveContainer width="100%" height="100%">
+                    <PieChart>
+                        {/* dataKey="value" каже діаграмі, яке поле брати для розрахунку відсотків */}
+                        <Pie
+                            data={stats.conditionData}
+                            dataKey="value"
+                            nameKey="name" // nameKey="name" каже, яке поле брати для підписів
+                            cx="50%" // Центрування по X
+                            cy="50%" // Центрування по Y
+                            outerRadius={100} // Розмір самої діаграми
+                            fill="#8884d8"
+                            label // Вмикає підписи (наприклад, "50%")
+                        >
+                            {/* Цей .map потрібен, щоб розфарбувати кожен шматок діаграми */}
+                            {stats.conditionData.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            ))}
+                        </Pie>
+                        
+                        {/* Стиль для Tooltip */}
+                        <Tooltip 
+                            contentStyle={{ 
+                                backgroundColor: '#283242', 
+                                borderRadius: '5px',
+                                border: 'none' // Прибираємо стандартну рамку
+                            }} 
+                            labelStyle={{ color: 'white' }}
+                            itemStyle={{ color: 'white' }} // Робить текст ("Сонячно: 2") білим
+                        />
+                        <Legend />
+                    </PieChart>
+                </ResponsiveContainer>
+            </div>
+        
             <button 
                 onClick={() => onNavigate('dashboard')} 
-                className={secondaryButton}
+                className={secondaryButton + " mt-6"} // Додаємо відступ
             >
                 Назад
             </button>
@@ -52,3 +96,5 @@ const Statistics = ({ onNavigate, stats }) => {
 };
 
 export default Statistics;
+
+

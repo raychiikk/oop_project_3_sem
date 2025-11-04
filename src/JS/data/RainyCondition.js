@@ -15,7 +15,7 @@ export class RainyCondition extends WeatherCondition {
     }
 
     describe() {
-        return `🌧️ Rainy: ${this.#rainAmount}mm of rain, intensity = ${this.getIntensity()}`;
+        return `Rainy: ${this.#rainAmount}mm of rain, intensity = ${this.getIntensity()}`;
     }
 
     addRain(mm) {

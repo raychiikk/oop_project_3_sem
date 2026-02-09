@@ -2,27 +2,36 @@ import { City } from './data/City.js';
 import { CityManager } from './data/CityManager.js';
 import { WeatherData } from './data/WeatherData.js';
 import { Forecast } from './logic/Forecast.js';
-import { WeatherFactory } from './logic/WeatherFactory.js'; 
+import { WeatherFactory } from './logic/WeatherFactory.js';
 
+/**
+ * Головний сервіс погоди (Facade).
+ * Відповідає за координацію роботи між даними (CityManager), 
+ * логікою створення (WeatherFactory) та представленням.
+ * * @class
+ */
 export class WeatherService {
   #cityManager;
   #currentWeather;
   #forecast;
 
+  /**
+   * Ініціалізує сервіс, налаштовує менеджер міст та початкові дані.
+   */
   constructor() {
-    // Використання Singleton: навіть при new CityManager(), отримаємо той самий об'єкт
     this.#cityManager = new CityManager();
     
-    // Додаємо початкові дані (якщо вони ще не були додані)
+    // Додаємо початкові дані
     if (this.#cityManager.getCities().length === 0) {
         this.#cityManager.addCity(new City("Київ", "Україна"));
         this.#cityManager.addCity(new City("Львів", "Україна"));
         this.#cityManager.addCity(new City("Одеса", "Україна"));
     }
 
-    // Використання Factory для ініціалізації
+    // Початкова ініціалізація погоди
     this.#currentWeather = new WeatherData(22, WeatherFactory.createCondition('sunny', 8));
 
+    // Генерація прогнозу
     const forecastDays = [
       WeatherFactory.createCondition('sunny', 10),
       WeatherFactory.createCondition('rainy', 5),
@@ -32,17 +41,28 @@ export class WeatherService {
     this.#forecast = new Forecast(forecastDays);
   }
 
-  // ... (методи getFavoriteCities, addCity, removeCity залишаються без змін) ...
-
+  /**
+   * Отримує список улюблених міст через CityManager.
+   * @returns {Array<City>} Масив об'єктів City.
+   */
   getFavoriteCities() {
     return this.#cityManager.getCities();
   }
 
+  /**
+   * Додає нове місто.
+   * @param {string} cityName - Назва міста.
+   * @param {string} [cityCountry="Невідомо"] - Назва країни.
+   */
   addCity(cityName, cityCountry = "Невідомо") {
     const newCity = new City(cityName, cityCountry);
     this.#cityManager.addCity(newCity);
   }
 
+  /**
+   * Видаляє місто за назвою.
+   * @param {string} cityName - Назва міста для видалення.
+   */
   removeCity(cityName) {
     const cities = this.getFavoriteCities();
     const cityToRemove = cities.find(city => city.getName() === cityName);
@@ -51,24 +71,35 @@ export class WeatherService {
     }
   }
   
+  /**
+   * Повертає поточні дані погоди.
+   * @returns {WeatherData} Об'єкт з даними про погоду.
+   */
   getCurrentWeather() {
     return this.#currentWeather;
   }
 
-  // Оновлений метод з використанням Factory
+  /**
+   * Оновлює погоду випадковими даними.
+   * Використовує WeatherFactory для створення нової умови.
+   * * @returns {WeatherData} Оновлений об'єкт погоди.
+   */
   updateWeather() {
     const temp = Math.floor(Math.random() * 30);
-    
-    // REFACTORING: Делегуємо створення умови фабриці
     const condition = WeatherFactory.createRandomCondition();
     
     this.#currentWeather = new WeatherData(temp, condition);
     return this.#currentWeather;
   }
 
+  /**
+   * Розраховує статистику на основі прогнозу.
+   * * @returns {Object} Об'єкт зі статистичними даними (середня інтенсивність, кількість днів).
+   */
   getStatistics() {
-    // ... (код методу без змін, він вже був добре написаний) ...
     const avgIntensity = this.#forecast.averageIntensity();
+    
+    // Підрахунок кількості сонячних та дощових днів
     const conditionCounts = this.#forecast.days.reduce((acc, day) => {
         const type = day.getType(); 
         const typeName = (type === 'Sunny') ? 'Сонячно' : 'Дощ';

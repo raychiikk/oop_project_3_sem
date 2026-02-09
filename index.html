@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Home - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CityManager.html">CityManager</a><ul class='methods'><li data-type='method' style='display: none;'><a href="CityManager.html#addCity">addCity</a></li><li data-type='method' style='display: none;'><a href="CityManager.html#getCities">getCities</a></li><li data-type='method' style='display: none;'><a href="CityManager.html#removeCity">removeCity</a></li></ul></li><li><a href="WeatherFactory.html">WeatherFactory</a><ul class='methods'></ul></li><li><a href="WeatherService.html">WeatherService</a><ul class='methods'><li data-type='method' style='display: none;'><a href="WeatherService.html#addCity">addCity</a></li><li data-type='method' style='display: none;'><a href="WeatherService.html#getCurrentWeather">getCurrentWeather</a></li><li data-type='method' style='display: none;'><a href="WeatherService.html#getFavoriteCities">getFavoriteCities</a></li><li data-type='method' style='display: none;'><a href="WeatherService.html#getStatistics">getStatistics</a></li><li data-type='method' style='display: none;'><a href="WeatherService.html#removeCity">removeCity</a></li><li data-type='method' style='display: none;'><a href="WeatherService.html#updateWeather">updateWeather</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Statistics">Statistics</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+    <section class="package">
+        <h3> </h3>		
+    </section>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <section class="readme usertext">
+        <article><h1>Weather Vibes</h1>
+<p><strong>Weather Vibes</strong> — це сучасний односторінковий веб-застосунок (SPA) для моніторингу погодних умов, побудований на принципах об'єктно-орієнтованого проєктування (OOP) та чистої архітектури.</p>
+<p>Проєкт демонструє використання патернів проєктування в контексті React-застосунку, розділення логіки та представлення, а також повне покриття UML-моделюванням.</p>
+<hr>
+<h2>Функціональність</h2>
+<ul>
+<li><strong>Поточна погода:</strong> Відображення температури, стану та детальних характеристик.</li>
+<li><strong>Прогноз (Forecast):</strong> Візуалізація температурних трендів за допомогою графіків (Recharts).</li>
+<li><strong>Менеджер міст:</strong> Додавання та видалення улюблених міст (Local State).</li>
+<li><strong>Статистика:</strong> Аналіз погодних умов (співвідношення сонячних/дощових днів).</li>
+<li><strong>Теми:</strong> Підтримка темного та світлого режимів.</li>
+</ul>
+<hr>
+<h2>Технологічний стек</h2>
+<ul>
+<li><strong>Core:</strong> React 19, JavaScript (ES6+).</li>
+<li><strong>Styling:</strong> Tailwind CSS 4.</li>
+<li><strong>Charts:</strong> Recharts.</li>
+<li><strong>Testing:</strong> Vitest.</li>
+<li><strong>Modeling:</strong> Mermaid.js (Diagram as Code).</li>
+<li><strong>Documentation:</strong> JSDoc (Docdash theme).</li>
+</ul>
+<hr>
+<h2>Архітектура та Патерни</h2>
+<p>Проєкт спроєктовано з дотриманням принципів <strong>SOLID</strong> та <strong>Layered Architecture</strong>.</p>
+<h3>1. Патерни проєктування (GoF)</h3>
+<ul>
+<li><strong>Singleton (Одинак):</strong> Реалізовано в класі <code>CityManager</code>. Гарантує існування єдиного списку міст для всього застосунку та централізоване управління станом.</li>
+<li><strong>Factory Method (Фабричний метод):</strong> Реалізовано в <code>WeatherFactory</code>. Інкапсулює логіку створення об'єктів погоди (<code>Sunny</code>, <code>Rainy</code>), що дозволяє легко розширювати систему новими типами умов без зміни основного сервісу.</li>
+<li><strong>Facade (Фасад):</strong> Клас <code>WeatherService</code> виступає єдиною точкою входу для UI-компонентів, приховуючи складність внутрішньої логіки.</li>
+</ul>
+<h3>2. Структура проєкту (Layers)</h3>
+<ul>
+<li><strong>Presentation Layer:</strong> React-компоненти (<code>/components</code>) — відповідають лише за рендеринг UI.</li>
+<li><strong>Logic Layer:</strong> Бізнес-логіка та фабрики (<code>/js/logic</code>).</li>
+<li><strong>Data Layer:</strong> Моделі даних та менеджери стану (<code>/js/data</code>).</li>
+</ul>
+<hr>
+<h2>UML Моделювання</h2>
+<p>Архітектура проєкту повністю задокументована за допомогою <strong>13 типів діаграм UML 2.5</strong>.</p>
+<p><strong><a href="./uml/">Переглянути всі діаграми</a></strong></p>
+<p>Основні схеми:</p>
+<ul>
+<li><a href="./uml/class/Class_Diagram.png">Class Diagram</a> — структура класів.</li>
+<li><a href="./uml/sequence/Sequence_Diagram.png">Sequence Diagram</a> — потік оновлення погоди.</li>
+<li><a href="./uml/state/State_Diagram.png">State Machine</a> — життєвий цикл даних.</li>
+<li><a href="./uml/component/Component_Diagram.png">Component Diagram</a> — архітектурні шари.</li>
+</ul>
+<hr>
+<h2>Документація</h2>
+<h2>Проєкт містить автоматично згенеровану технічну документацію (JSDoc).</h2>
+<h2>Встановлення та запуск</h2>
+<ol>
+<li>
+<p><strong>Клонування репозиторію:</strong></p>
+<pre class="prettyprint source lang-bash"><code>git clone [https://github.com/your-username/WeatherVibes-OOP.git](https://github.com/your-username/WeatherVibes-OOP.git)
+cd WeatherVibes-OOP
+</code></pre>
+</li>
+<li>
+<p><strong>Встановлення залежностей:</strong></p>
+<pre class="prettyprint source lang-bash"><code>npm install
+</code></pre>
+</li>
+<li>
+<p><strong>Запуск у режимі розробки:</strong></p>
+<pre class="prettyprint source lang-bash"><code>npm run dev
+</code></pre>
+</li>
+<li>
+<p><strong>Запуск тестів:</strong></p>
+<pre class="prettyprint source lang-bash"><code>npm test
+</code></pre>
+</li>
+<li>
+<p><strong>Генерація документації:</strong></p>
+<pre class="prettyprint source lang-bash"><code>npm run docs
+</code></pre>
+</li>
+</ol>
+<hr>
+<h2>Автор</h2>
+<p><strong>Чергінець Юлія</strong></p>
+<ul>
+<li>Faculty of Computer Science and Cybernetics</li>
+<li>Project developed as part of the &quot;Object-Oriented Design&quot; course (2026).</li>
+</ul>
+<hr></article>
+    </section>
+
+
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Mon Feb 09 2026 11:42:27 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>

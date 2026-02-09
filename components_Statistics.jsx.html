@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/Statistics.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CityManager.html">CityManager</a><ul class='methods'><li data-type='method' style='display: none;'><a href="CityManager.html#addCity">addCity</a></li><li data-type='method' style='display: none;'><a href="CityManager.html#getCities">getCities</a></li><li data-type='method' style='display: none;'><a href="CityManager.html#removeCity">removeCity</a></li></ul></li><li><a href="WeatherFactory.html">WeatherFactory</a><ul class='methods'></ul></li><li><a href="WeatherService.html">WeatherService</a><ul class='methods'><li data-type='method' style='display: none;'><a href="WeatherService.html#addCity">addCity</a></li><li data-type='method' style='display: none;'><a href="WeatherService.html#getCurrentWeather">getCurrentWeather</a></li><li data-type='method' style='display: none;'><a href="WeatherService.html#getFavoriteCities">getFavoriteCities</a></li><li data-type='method' style='display: none;'><a href="WeatherService.html#getStatistics">getStatistics</a></li><li data-type='method' style='display: none;'><a href="WeatherService.html#removeCity">removeCity</a></li><li data-type='method' style='display: none;'><a href="WeatherService.html#updateWeather">updateWeather</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Statistics">Statistics</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/Statistics.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
+// стилі кнопок (додано shadow-sm)
+const secondaryButton = "py-2 px-4 rounded-lg font-semibold transition-colors bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 shadow-sm";
+
+// Кольори для діаграми 
+// Жовтий для "Сонячно", Синій для "Дощ", сірий про всяк випадок
+const COLORS = ['#FFBB28', '#0088FE', '#FF8042'];
+
+/**
+ * компонент статистики.
+ * приймає простий об'єкт `stats` з готовими даними з WeatherService
+ */
+const Statistics = ({ onNavigate, stats }) => {
+    
+    // stats тепер містить:
+    // stats.averageIntensity
+    // stats.totalDays
+    // stats.conditionData = [ { name: 'Сонячно', value: 2 }, { name: 'Дощ', value: 2 } ]
+    
+    return (
+        &lt;div className="statistics">
+            &lt;h2 className="text-3xl font-bold mb-6">Статистика погоди&lt;/h2>
+            
+            {/*використовуємо сітку (grid) для двох окремих "стат-карток".*/}
+            &lt;div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                
+                {/* Stat Card 1 */}
+                &lt;div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md text-center">
+                    &lt;h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+                        Середня інтенсивність
+                    &lt;/h3>
+                    &lt;p className="text-4xl font-bold text-blue-600 dark:text-blue-400">
+                        {stats.averageIntensity}
+                    &lt;/p>
+                &lt;/div>
+                
+                {/* Stat Card 2 */}
+                &lt;div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow-md text-center">
+                    &lt;h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+                        Днів у прогнозі
+                    &lt;/h3>
+                    &lt;p className="text-4xl font-bold text-blue-600 dark:text-blue-400">
+                        {stats.totalDays}
+                    &lt;/p>
+                &lt;/div>
+                
+            &lt;/div>
+
+            {/* Кругова діаграма*/}
+            &lt;h3 className="text-2xl font-bold mb-4 mt-8">Співвідношення умов (прогноз)&lt;/h3>
+            &lt;div className="w-full h-80 bg-gray-50 dark:bg-gray-700 p-4 rounded-lg shadow-md">
+                &lt;ResponsiveContainer width="100%" height="100%">
+                    &lt;PieChart>
+                        {/* dataKey="value" каже діаграмі, яке поле брати для розрахунку відсотків */}
+                        &lt;Pie
+                            data={stats.conditionData}
+                            dataKey="value"
+                            nameKey="name" // nameKey="name" каже, яке поле брати для підписів
+                            cx="50%" // Центрування по X
+                            cy="50%" // Центрування по Y
+                            outerRadius={100} // Розмір самої діаграми
+                            fill="#8884d8"
+                            label // Вмикає підписи (наприклад, "50%")
+                        >
+                            {/* Цей .map потрібен, щоб розфарбувати кожен шматок діаграми */}
+                            {stats.conditionData.map((entry, index) => (
+                                &lt;Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            ))}
+                        &lt;/Pie>
+                        
+                        {/* Стиль для Tooltip */}
+                        &lt;Tooltip 
+                            contentStyle={{ 
+                                backgroundColor: '#283242', 
+                                borderRadius: '5px',
+                                border: 'none' // Прибираємо стандартну рамку
+                            }} 
+                            labelStyle={{ color: 'white' }}
+                            itemStyle={{ color: 'white' }} // Робить текст ("Сонячно: 2") білим
+                        />
+                        &lt;Legend />
+                    &lt;/PieChart>
+                &lt;/ResponsiveContainer>
+            &lt;/div>
+        
+            &lt;button 
+                onClick={() => onNavigate('dashboard')} 
+                className={secondaryButton + " mt-6"} // Додаємо відступ
+            >
+                Назад
+            &lt;/button>
+        &lt;/div>
+    );
+};
+
+export default Statistics;
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.5</a> on Mon Feb 09 2026 11:42:27 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>

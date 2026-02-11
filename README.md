@@ -66,7 +66,7 @@
 
 1.  **Клонування репозиторію:**
     ```bash
-    git clone [https://github.com/your-username/WeatherVibes-OOP.git](https://github.com/your-username/WeatherVibes-OOP.git)
+    git clone [https://github.com/raychiikk/WeatherVibes-OOP.git](https://github.com/raychiikk/WeatherVibes-OOP.git)
     cd WeatherVibes-OOP
     ```
 
@@ -90,13 +90,4 @@
     npm run docs
     ```
 
----
-
-## Автор
-
-**Чергінець Юлія**
-* Faculty of Computer Science and Cybernetics
-* Project developed as part of the "Object-Oriented Design" course (2026).
-
----
 

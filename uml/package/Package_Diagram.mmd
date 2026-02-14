@@ -1,0 +1,21 @@
+classDiagram
+    namespace UI_Components {
+        class App
+        class WeatherCard
+        class ForecastChart
+    }
+
+    namespace Logic_Layer {
+        class WeatherService
+        class WeatherFactory
+    }
+
+    namespace Data_Layer {
+        class CityManager
+        class WeatherData
+        class WeatherCondition
+    }
+
+    UI_Components ..> Logic_Layer : imports
+    Logic_Layer ..> Data_Layer : imports
+    UI_Components ..> Data_Layer : uses types

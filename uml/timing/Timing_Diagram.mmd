@@ -1,0 +1,27 @@
+timingDiagram
+    title Timing of Weather Update Request
+
+    axisFormat %S s
+    
+    participant User
+    participant AppState as App State
+    participant Network
+
+    User at 0
+    AppState at 0
+    Network at 0
+
+    User -> AppState: Click Update
+    @1
+    AppState is Loading
+    AppState -> Network: Fetch Request
+    
+    @3
+    Network is Processing
+    
+    @5
+    Network -> AppState: JSON Response
+    AppState is ProcessingData
+    
+    @6
+    AppState is Idle (Updated)

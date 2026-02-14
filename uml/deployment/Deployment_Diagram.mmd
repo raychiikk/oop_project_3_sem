@@ -1,0 +1,19 @@
+graph TD
+    node_client("Client Workstation (Browser)") 
+    style node_client fill:#f9f,stroke:#333,stroke-width:2px
+    
+    node_server("GitHub Pages Server")
+    style node_server fill:#ccf,stroke:#333,stroke-width:2px
+    
+    node_api("OpenWeatherMap API")
+    style node_api fill:#ff9,stroke:#333,stroke-width:2px
+
+    subgraph Browser [Client Environment]
+        node_client -->|HTTPS / React App| Artifact1[build/index.html]
+        node_client -->|HTTPS / JS Bundle| Artifact2[assets/index.js]
+    end
+
+    subgraph Cloud [External Services]
+        Artifact2 -.->|JSON / REST| node_api
+        node_server -->|Deploys| Artifact1
+    end

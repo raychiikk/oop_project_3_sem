@@ -1,0 +1,19 @@
+classDiagram
+    class weatherService_Instance {
+        currentCity = "Kyiv"
+        lastUpdated = "14:00"
+    }
+
+    class kyiv_City {
+        name = "Kyiv"
+        lat = 50.45
+        lon = 30.52
+    }
+
+    class sunny_Condition {
+        description = "Clear Sky"
+        intensity = 8
+    }
+
+    weatherService_Instance -- kyiv_City : tracks
+    weatherService_Instance -- sunny_Condition : displays

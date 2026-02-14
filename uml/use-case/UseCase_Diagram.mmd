@@ -1,0 +1,14 @@
+usecaseDiagram
+    actor User
+    
+    package "Weather System" {
+        usecase "View Current Weather" as UC1
+        usecase "Manage Cities" as UC2
+        usecase "View Statistics" as UC3
+        usecase "Update Forecast" as UC4
+    }
+
+    User --> UC1
+    User --> UC2
+    User --> UC3
+    User --> UC4

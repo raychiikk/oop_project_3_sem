@@ -1,0 +1,17 @@
+flowchart TD
+    Start((Start)) --> UserClick[User Clicks 'Update']
+    UserClick --> CheckInternet{Internet Available?}
+    
+    CheckInternet -- No --> ShowError[Show Error Message]
+    CheckInternet -- Yes --> RequestAPI[Request Weather API]
+    
+    RequestAPI --> Validate{Data Valid?}
+    
+    Validate -- No --> ShowError
+    Validate -- Yes --> ProcessData[Process JSON Data]
+    
+    ProcessData --> UpdateState[Update Application State]
+    UpdateState --> RenderUI[Re-render UI Components]
+    
+    ShowError --> Stop((End))
+    RenderUI --> Stop

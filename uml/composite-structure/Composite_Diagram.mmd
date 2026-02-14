@@ -1,0 +1,19 @@
+classDiagram
+    class WeatherService {
+        <<Service>>
+        Part: API_Connector
+        Part: Cache_Manager
+        Part: State_Notifier
+    }
+    
+    class API_Connector {
+        fetch()
+    }
+    
+    class Cache_Manager {
+        save()
+        load()
+    }
+
+    WeatherService *-- API_Connector
+    WeatherService *-- Cache_Manager

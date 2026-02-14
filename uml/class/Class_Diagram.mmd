@@ -1,0 +1,49 @@
+classDiagram
+    class WeatherService {
+        -cityManager: CityManager
+        -currentWeather: WeatherData
+        +getFavoriteCities()
+        +addCity(name)
+        +updateWeather()
+    }
+
+    class CityManager {
+        -instance: CityManager
+        -cities: List
+        +getInstance()
+        +addCity(city)
+        +removeCity(city)
+    }
+
+    class WeatherFactory {
+        +createCondition(type)
+        +createRandomCondition()
+    }
+
+    class WeatherData {
+        +temperature: Float
+        +condition: WeatherCondition
+    }
+
+    class WeatherCondition {
+        <<interface>>
+        +getType()
+        +getDescription()
+    }
+
+    class SunnyCondition {
+        +sunIntensity: Int
+    }
+
+    class RainyCondition {
+        +rainAmount: Int
+    }
+
+    %% Relationships
+    WeatherService --> CityManager : uses (Singleton)
+    WeatherService ..> WeatherFactory : uses (Factory)
+    WeatherService *-- WeatherData : contains
+    WeatherFactory ..> WeatherCondition : creates
+    SunnyCondition --|> WeatherCondition : implements
+    RainyCondition --|> WeatherCondition : implements
+    CityManager --* CityManager : instance

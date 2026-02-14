@@ -1,0 +1,17 @@
+stateDiagram-v2
+    [*] --> Idle
+    
+    Idle --> Updating : User clicks Update
+    Updating --> Validating : Data received
+    
+    state Validating {
+        [*] --> CheckTemp
+        CheckTemp --> CheckCondition
+        CheckCondition --> [*]
+    }
+
+    Validating --> Displayed : Valid Data
+    Validating --> Error : Invalid Data
+    
+    Displayed --> Idle : Wait for action
+    Error --> Idle : Reset 

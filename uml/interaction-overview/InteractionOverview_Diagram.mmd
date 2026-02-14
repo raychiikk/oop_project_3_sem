@@ -1,0 +1,11 @@
+flowchart TD
+    Start((Start)) --> CheckCache{Cache Valid?}
+    
+    CheckCache -- Yes --> GetFromCache[Get Cached Data]
+    
+    CheckCache -- No --> Sequence1[[ref: Sequence Diagram\n(Fetch from API)]]
+    
+    GetFromCache --> MergeData[Prepare View Model]
+    Sequence1 --> MergeData
+    
+    MergeData --> End((End))

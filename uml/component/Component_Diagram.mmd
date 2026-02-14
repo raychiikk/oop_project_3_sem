@@ -1,0 +1,11 @@
+C4Component
+    title Component Diagram - Weather Vibes App
+
+    Container_Boundary(spa, "Single Page Application") {
+        Component(ui, "Presentation Layer", "React Components", "App, CityList, ForecastChart")
+        Component(logic, "Logic Layer", "JS Modules", "WeatherService, WeatherFactory")
+        Component(data, "Data Layer", "JS Classes", "CityManager, WeatherData")
+    }
+
+    Rel(ui, logic, "Uses", "Calls methods")
+    Rel(logic, data, "Uses", "Reads/Writes State")

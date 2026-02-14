@@ -1,0 +1,11 @@
+graph LR
+    User((User))
+    UI[UI Component]
+    Service[WeatherService]
+    Factory[WeatherFactory]
+
+    User -- "1. Click Update" --> UI
+    UI -- "2. update()" --> Service
+    Service -- "2.1. createCondition()" --> Factory
+    Factory -- "2.2. return Condition" --> Service
+    Service -- "3. return Data" --> UI

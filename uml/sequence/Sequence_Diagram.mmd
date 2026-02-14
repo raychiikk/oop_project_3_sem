@@ -1,0 +1,20 @@
+sequenceDiagram
+    participant User
+    participant UI as App Component
+    participant Service as WeatherService
+    participant Factory as WeatherFactory
+
+    User->>UI: Click "Update Weather"
+    UI->>Service: updateWeather()
+    activate Service
+    
+    Service->>Factory: createRandomCondition()
+    activate Factory
+    Factory-->>Service: return new Condition (e.g. Sunny)
+    deactivate Factory
+
+    Service->>Service: new WeatherData(temp, condition)
+    Service-->>UI: return WeatherData
+    deactivate Service
+
+    UI->>User: Update View (Re-render)
